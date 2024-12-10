@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Pricing Page with Popup</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="logo-2.png" alt="Logo">
+    </div>
+    <button class="join-button" onclick="openPopup('freebie')">Join</button>
+  </header>
+
+  <div class="text">
+    <h1  style="font-family:'Playfair Display';">CREATING MAGICAL MOMENTS...<br>IN A CLICK</h1>
+  </div>
+
+  <main class="pricing-container">
+    <div class="card freebie">
+      <h2>Freebie</h2>
+      <p>Ideal for individuals who need quick access to basic features.</p>
+      <button onclick="openPopup('freebie')">Get Started Now</button>
+    </div>
+    <div class="card professional">
+      <h2>Professional</h2>
+      <p>Ideal for individuals who need quick access to advanced features.</p>
+      <button onclick="openPopup('professional')">Get Started Now</button>
+    </div>
+  </main>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+    
+      <img src="logo-2.png" alt="logo_img" width="90px">
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="phone">Mobile number</label>
+          <input type="text" id="phone" name="phone" maxlength="10" required placeholder="123-456-7890"
+            oninput="this.value = this.value.replace(/[^0-9-]/g, '')">
+        </div>
+        <div class="form-group">
+          <label for="email">Email ID</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <select id="city" name="city" class="select-city">
+            <option value="" disabled selected>Select your city</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Chennai">Chennai</option>
+          </select>
+        </div>
+        <div class="radio-group">
+          <label><input type="radio" name="role" value="service-provider"> Are you a Service Provider</label>
+          <label><input type="radio" name="role" value="vendor"> Are you looking for Vendors</label>
+        </div>
+        <button  class="botton" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openPopup(selectedCard) {
+      document.getElementById('popup').classList.add('active');
+      const radios = document.querySelectorAll('input[name="role"]');
+      radios.forEach(radio => radio.checked = false);
+  
+      if (selectedCard === 'freebie') {
+        document.querySelector('input[value="service-provider"]').checked = true;
+      } else if (selectedCard === 'professional') {
+        document.querySelector('input[value="vendor"]').checked = true;
+      }
+    }
+  
+    function closePopup() {
+      document.getElementById('popup').classList.remove('active');
+    }
+  
+    // Close the popup if the user clicks outside the popup content
+    document.getElementById('popup').addEventListener('click', function(event) {
+      if (event.target === document.getElementById('popup')) {
+        closePopup();
+      }
+    });
+  </script>
+  
+</body>
+
+</html>
