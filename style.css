@@ -78,7 +78,9 @@
 
   .card.professional {
     background-color: #6a1b9a;
-    color:#fdd835;
+        color: rgb(255, 255, 255);
+    border-color: #fdd835;
+
   }
 
   .card h2 {
